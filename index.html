@@ -4,22 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WordGame</title>
+  <link rel="stylesheet" href="./style.css">
   
 </head>
 <body>
+  <div class="flex-container">
+    <h1>WordGame</h1>
+    <button id="start-game">Start the Game</button>
+    <div id="game-controls"></div>
+    <form>
+      <button class="control-buttons" id="btn-new-game" value="n">NEW</button>
+      <button class="control-buttons" id="btn-replay-game" value="r">REPLAY</button>
+      <button class="control-buttons" id="btn-end-game" value="e">END</button>
+      <br>
+    </form>
+    <div id="dialogue-div"></div>
+    <div>
+      <input id="user-input" type="text">
+      <button id="user-input-button">Send</button>
+    </div>
+  </div>
   
-  <h1>WordGame</h1>
-  <button id="start-game">Start the Game</button>
-  <div id="game-controls" style="width:200px"></div>
-  <button class="control-buttons" id="btn-new-game" value="n">NEW</button>
-  <button class="control-buttons" id="btn-replay-game" value="r">REPLAY</button>
-  <button class="control-buttons" id="btn-end-game" value="e">END</button>
   
-  <input type="text">
-  <button>Send</button>
   
-  <!-- <script type="module" src="wordGame.js"></script> -->
+  
   <script type="module" src="wordList.js"></script>
+  
   <script>
     const startButton = document.querySelector("#start-game");
     startButton.addEventListener('click', async (event) => {

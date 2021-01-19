@@ -1,6 +1,8 @@
 // Wordgame reworked from the python code ps4a.py and ps4b.py
 import wordList from "./wordList.js";
-
+const userInputButton = document.querySelector("#user-input-button");
+const userInput = document.querySelector("#user-input");
+const DIALOGUE = document.querySelector("#dialogue-div");
 const VOWELS = 'aeiou';
 const CONSONANTS = 'bcdfghjklmnpqrstvwxyz'
 const HAND_SIZE = 10
@@ -21,14 +23,14 @@ function getWordScore(word, n) {
   return score
 }
 
-function displayHand (hand, total) {
+function displayHand(hand) {
   let output = "";
   for (let item in hand) {
     for (let i = 1; i <= hand[item]; i++) {
       output += item + " ";
     } 
   }
-  console.log("Current Hand: ", output)
+  return `Current Hand: ${output}`;
 }
 
 function dealHand(n) {
@@ -65,6 +67,7 @@ function updateHand(hand, word) {
 
 function isValidWord(word, hand, wordList) {
   let handCopy = {...hand};
+  console.log("INSIDE isValidWord, word = ", word)
 
   if (wordList.includes(word.toUpperCase())) {
     return word.split("").every(letter => {
@@ -81,29 +84,27 @@ function calculateHandlen(hand) {
   return Object.entries(hand).reduce((a, item) => item[1] + a, 0);
 }
 
+
 function playHand(hand, wordList, n) {
   let total = 0;
   while (calculateHandlen(hand) > 0) {
-    displayHand(hand, total);
-    let word = prompt('Enter word, or a "." to indicate that you are finished: ');
-    if (word === ".") {
-      console.log("Goodbye! Total score: " + total + " points.");
-      console.log();
-      break;
-      // return null
+    DIALOGUE.innerHTML = displayHand(hand);
+    
+    alert("YES");
+    let word = prompt('Enter word, or a "." to indicate that you are finished:');    
+    if (word === '.') {
+      DIALOGUE.innerHTML = `Goodbye! Total score: ${total} points.`;
+      return
     } else {
       if (isValidWord(word, hand, wordList) === false) {
-        console.log("Invalid word, please try again.");
-        console.log();
+        DIALOGUE.innerHTML = "Invalid word, please try again.";
       } else {
         total += getWordScore(word, n);
         console.log(`"${word}" earned ${getWordScore(word, n)} points. Total: ${total} points`);
-        console.log();
         hand = updateHand(hand, word);
       }
     }
   }
-  console.log();
   console.log("Run out of letters. Total score: " + total + " points.");
 }
 
@@ -112,33 +113,29 @@ function playGame(wordList) {
   let count = 0;
   let hand = dealHand(HAND_SIZE);
   const controlButtons = document.querySelectorAll('.control-buttons');
-  console.log(typeof controlButtons);
   document.querySelector("#game-controls").innerHTML = "Enter n to deal a new hand, r to replay the last hand, or e to end game:";
+  
   for (let button of controlButtons) {
     button.addEventListener('click', async (event) => {
       event.preventDefault();
       const game = await button.value;
-      while (true) {
-        
-        // let game = prompt("Enter n to deal a new hand, r to replay the last hand, or e to end game:");
-        console.log("GAME VALUE: ", game);
-        switch(game) {
-          case 'n':
-            hand = dealHand(HAND_SIZE);
-            playHand(hand, wordList, HAND_SIZE);
-            count++;
-            break;
-          case 'r':
-            count === 0 ?
-            console.log("You have not played a hand yet. Please play a new hand first!") :
-            playHand(hand, wordList, HAND_SIZE);
-            break;
-          case 'e':
-            return "END OF GAME";
-          default:
-            console.log("Invalid command.")
-        }
+      switch(game) {
+        case 'n':
+          hand = dealHand(HAND_SIZE);
+          playHand(hand, wordList, HAND_SIZE);
+          count++;
+          break;
+        case 'r':
+          count === 0 ?
+          DIALOGUE.innerHTML = "You have not played a hand yet. Please play a new hand first!" :
+          playHand(hand, wordList, HAND_SIZE);
+          break;
+        case 'e':
+          return "END OF GAME";
+        default:
+          DIALOGUE.innerHTML = "Invalid command.";
       }
+      
     });
   }
   
