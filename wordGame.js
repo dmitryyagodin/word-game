@@ -1,5 +1,7 @@
 // Wordgame reworked from the python code ps4a.py and ps4b.py
 import wordList from "./wordList.js";
+const WORDLIST = wordList.split(",");
+console.log(WORDLIST.length);
 const userInputButton = document.querySelector("#user-input-button");
 const userInput = document.querySelector("#user-input");
 const DIALOGUE = document.querySelector("#dialogue-div");
@@ -30,7 +32,9 @@ function displayHand(hand) {
       output += item + " ";
     } 
   }
-  return `Current Hand: ${output}`;
+  output = `Current Hand: ${output.trim().split(" ").sort().join(" ")}`
+  
+  return output;
 }
 
 function dealHand(n) {
@@ -65,11 +69,9 @@ function updateHand(hand, word) {
   return handCopy
 }
 
-function isValidWord(word, hand, wordList) {
+function isValidWord(word, hand, WORDLIST) {
   let handCopy = {...hand};
-  console.log("INSIDE isValidWord, word = ", word)
-
-  if (wordList.includes(word.toUpperCase())) {
+  if (WORDLIST.includes(word.toUpperCase())) {
     return word.split("").every(letter => {
       handCopy[letter]--;
       return handCopy[letter] >= 0;
@@ -85,31 +87,37 @@ function calculateHandlen(hand) {
 }
 
 
-function playHand(hand, wordList, n) {
+function playHand(hand, WORDLIST, n) {
   let total = 0;
-  while (calculateHandlen(hand) > 0) {
-    DIALOGUE.innerHTML = displayHand(hand);
+  
+  DIALOGUE.innerHTML = displayHand(hand);
+  DIALOGUE.innerHTML += '\nEnter word, or a "." to indicate that you are finished:';
+  userInputButton.addEventListener('click', async (event) => {
     
-    alert("YES");
-    let word = prompt('Enter word, or a "." to indicate that you are finished:');    
+    let word = await userInput.value;
+    event.preventDefault();
     if (word === '.') {
-      DIALOGUE.innerHTML = `Goodbye! Total score: ${total} points.`;
+      DIALOGUE.innerHTML += `\nGoodbye! Total score: ${total} points.`;
       return
     } else {
-      if (isValidWord(word, hand, wordList) === false) {
-        DIALOGUE.innerHTML = "Invalid word, please try again.";
+      if (isValidWord(word, hand, WORDLIST) === false) {
+        DIALOGUE.innerHTML += "\nInvalid word, please try again.";
       } else {
         total += getWordScore(word, n);
-        console.log(`"${word}" earned ${getWordScore(word, n)} points. Total: ${total} points`);
+        DIALOGUE.innerHTML += `\n"${word}" earned ${getWordScore(word, n)} points. Total: ${total} points`;
         hand = updateHand(hand, word);
+        DIALOGUE.innerHTML += "\n" + displayHand(hand);
       }
     }
-  }
-  console.log("Run out of letters. Total score: " + total + " points.");
+    if (calculateHandlen(hand) === 0) {
+      DIALOGUE.innerHTML += "Run out of letters. Total score: " + total + " points.";
+    }
+    userInput.value = "";
+  })
 }
 
 
-function playGame(wordList) {
+function playGame(WORDLIST) {
   let count = 0;
   let hand = dealHand(HAND_SIZE);
   const controlButtons = document.querySelectorAll('.control-buttons');
@@ -122,13 +130,13 @@ function playGame(wordList) {
       switch(game) {
         case 'n':
           hand = dealHand(HAND_SIZE);
-          playHand(hand, wordList, HAND_SIZE);
+          playHand(hand, WORDLIST, HAND_SIZE);
           count++;
           break;
         case 'r':
           count === 0 ?
           DIALOGUE.innerHTML = "You have not played a hand yet. Please play a new hand first!" :
-          playHand(hand, wordList, HAND_SIZE);
+          playHand(hand, WORDLIST, HAND_SIZE);
           break;
         case 'e':
           return "END OF GAME";
@@ -141,5 +149,4 @@ function playGame(wordList) {
   
 }
 
-playGame(wordList);
-// export * from './wordGame.js';
+playGame(WORDLIST);
