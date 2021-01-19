@@ -5,6 +5,7 @@ console.log(WORDLIST.length);
 const userInputButton = document.querySelector("#user-input-button");
 const userInput = document.querySelector("#user-input");
 const DIALOGUE = document.querySelector("#dialogue-div");
+const DISPLAYHAND = document.querySelector("#display-hand");
 const VOWELS = 'aeiou';
 const CONSONANTS = 'bcdfghjklmnpqrstvwxyz'
 const HAND_SIZE = 10
@@ -90,7 +91,7 @@ function calculateHandlen(hand) {
 function playHand(hand, WORDLIST, n) {
   let total = 0;
   
-  DIALOGUE.innerHTML = displayHand(hand);
+  DISPLAYHAND.innerHTML = displayHand(hand);
   DIALOGUE.innerHTML += '\nEnter word, or a "." to indicate that you are finished:';
   userInputButton.addEventListener('click', async (event) => {
     
@@ -106,7 +107,7 @@ function playHand(hand, WORDLIST, n) {
         total += getWordScore(word, n);
         DIALOGUE.innerHTML += `\n"${word}" earned ${getWordScore(word, n)} points. Total: ${total} points`;
         hand = updateHand(hand, word);
-        DIALOGUE.innerHTML += "\n" + displayHand(hand);
+        DISPLAYHAND.innerHTML = "\n" + displayHand(hand);
       }
     }
     if (calculateHandlen(hand) === 0) {
@@ -116,6 +117,42 @@ function playHand(hand, WORDLIST, n) {
   })
 }
 
+function compChooseWord(hand, WORDLIST, n) {
+  let bestScore = 0;
+  let bestWord = "";
+  for (let word of WORDLIST) {
+    if (isValidWord(word, hand, WORDLIST)) {
+      let score = getWordScore(word, n);
+      if (score > bestScore) {
+        bestScore = score;
+        bestWord = word;
+      }
+    }
+  }
+  return bestWord
+}
+
+function compPlayHand(hand, WORDLIST, n) {
+  let totalScore = 0;
+  while (calculateHandLen(hand) > 0) {
+    DISPLAYHAND.innerHTML = displayHand(hand);
+    let word = compChooseWord(hand, WORDLIST, n);
+    if (!word) {
+      break;
+    } else {
+      if (!isValidWord(word, hand, WORDLIST)) {
+        DISPLAYHAND.innerHTML = 'This is a terrible error! I need to check my own code!';
+        break;
+      } else {
+        let score = getWordScore(word, n);
+        totalScore += score
+        DIALOGUE.innerHTML += `"${word}" earned ${getWordScore(word, n)} points. Total: ${total} points`;
+        hand = updateHand(hand, word);
+      }
+    }
+  }
+  DIALOGUE.innerHTML += `Total score: ${total} points.`;
+}
 
 function playGame(WORDLIST) {
   let count = 0;
