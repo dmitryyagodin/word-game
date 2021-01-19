@@ -1,11 +1,9 @@
 // Wordgame reworked from the python code ps4a.py and ps4b.py
-import {wordList} from "./wordList.js";
-console.log(typeof wordList);
-console.log(wordList.slice(0,10));
+import wordList from "./wordList.js";
+
 const VOWELS = 'aeiou';
 const CONSONANTS = 'bcdfghjklmnpqrstvwxyz'
 const HAND_SIZE = 10
-const COUNT = 0
 const SCRABBLE_LETTER_VALUES = {
   'a': 1, 'b': 3, 'c': 3, 'd': 2, 'e': 1, 'f': 4, 'g': 2, 'h': 4, 'i': 1,
    'j': 8, 'k': 5, 'l': 1, 'm': 3, 'n': 1, 'o': 1, 'p': 3, 'q': 10, 'r': 1,
@@ -67,8 +65,7 @@ function updateHand(hand, word) {
 
 function isValidWord(word, hand, wordList) {
   let handCopy = {...hand};
-  document.getElementById("wordlist").innerHTML = typeof wordlist;
-  console.log("WORDLIST SLICE: ", wordlist.slice(0, 10));
+
   if (wordList.includes(word.toUpperCase())) {
     return word.split("").every(letter => {
       handCopy[letter]--;
@@ -92,7 +89,8 @@ function playHand(hand, wordList, n) {
     if (word === ".") {
       console.log("Goodbye! Total score: " + total + " points.");
       console.log();
-      return null
+      break;
+      // return null
     } else {
       if (isValidWord(word, hand, wordList) === false) {
         console.log("Invalid word, please try again.");
@@ -109,30 +107,42 @@ function playHand(hand, wordList, n) {
   console.log("Run out of letters. Total score: " + total + " points.");
 }
 
+
 function playGame(wordList) {
-  console.log("Inside playGame")
   let count = 0;
   let hand = dealHand(HAND_SIZE);
-  while (true) {
-    let game = prompt("Enter n to deal a new hand, r to replay the last hand, or e to end game:");
-    switch(game) {
-      case 'n':
-        hand = dealHand(HAND_SIZE);
-        playHand(hand, wordList, HAND_SIZE);
-        count++;
-        break;
-      case 'r':
-        count === 0 ?
-        console.log("You have not played a hand yet. Please play a new hand first!") :
-        playHand(hand, wordList, HAND_SIZE);
-        break;
-      case 'e':
-        return "END OF GAME";
-      default:
-        console.log("Invalid command.")
-    }
+  const controlButtons = document.querySelectorAll('.control-buttons');
+  console.log(typeof controlButtons);
+  document.querySelector("#game-controls").innerHTML = "Enter n to deal a new hand, r to replay the last hand, or e to end game:";
+  for (let button of controlButtons) {
+    button.addEventListener('click', async (event) => {
+      event.preventDefault();
+      const game = await button.value;
+      while (true) {
+        
+        // let game = prompt("Enter n to deal a new hand, r to replay the last hand, or e to end game:");
+        console.log("GAME VALUE: ", game);
+        switch(game) {
+          case 'n':
+            hand = dealHand(HAND_SIZE);
+            playHand(hand, wordList, HAND_SIZE);
+            count++;
+            break;
+          case 'r':
+            count === 0 ?
+            console.log("You have not played a hand yet. Please play a new hand first!") :
+            playHand(hand, wordList, HAND_SIZE);
+            break;
+          case 'e':
+            return "END OF GAME";
+          default:
+            console.log("Invalid command.")
+        }
+      }
+    });
   }
+  
 }
 
-
-console.log(playGame(wordList))
+playGame(wordList);
+// export * from './wordGame.js';

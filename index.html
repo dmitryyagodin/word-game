@@ -3,14 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hangman_JS</title>
+  <title>WordGame</title>
+  
 </head>
 <body>
-  <h1>WordGame with JS</h1>
-  <div id="wordlist" style="width:500px"></div>
+  
+  <h1>WordGame</h1>
+  <button id="start-game">Start the Game</button>
+  <div id="game-controls" style="width:200px"></div>
+  <button class="control-buttons" id="btn-new-game" value="n">NEW</button>
+  <button class="control-buttons" id="btn-replay-game" value="r">REPLAY</button>
+  <button class="control-buttons" id="btn-end-game" value="e">END</button>
+  
   <input type="text">
   <button>Send</button>
-  <script type="module" src="wordGame.js"></script>
+  
+  <!-- <script type="module" src="wordGame.js"></script> -->
   <script type="module" src="wordList.js"></script>
+  <script>
+    const startButton = document.querySelector("#start-game");
+    startButton.addEventListener('click', async (event) => {
+      event.preventDefault();
+      try {
+        const module = await import('./wordGame.js');
+        return module.playGame;
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  </script>
 </body>
 </html>
