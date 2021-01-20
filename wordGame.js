@@ -1,5 +1,4 @@
 // Wordgame reworked from the python code ps4a.py and ps4b.py
-
 import WORDS from "./tests/words.js";
 const userInputButton = document.querySelector("#user-input-button");
 const COMPPLAY = document.querySelector('#computer');
@@ -8,7 +7,7 @@ const DIALOGUE = document.querySelector("#dialogue-div");
 const DISPLAYHAND = document.querySelector("#display-hand");
 const VOWELS = 'aeiou';
 const CONSONANTS = 'bcdfghjklmnpqrstvwxyz';
-const HANDSIZE = 8;
+const HANDSIZE = 12;
 const LETTER_VALUES = {
   'a': 1, 'b': 3, 'c': 3, 'd': 2, 'e': 1, 'f': 4, 'g': 2, 'h': 4, 'i': 1,
    'j': 8, 'k': 5, 'l': 1, 'm': 3, 'n': 1, 'o': 1, 'p': 3, 'q': 10, 'r': 1,
