@@ -13,22 +13,25 @@
     <button id="start-game">Start the Game</button>
     <div id="game-controls"></div>
     <form>
+      <input type="radio" name="who-plays" id="player" value="player" checked="checked">
+      <label for="player">Player</label>
+      <input type="radio" name="who-plays" id="computer" value="computer">
+      <label for="computer">Computer</label>
       <button class="control-buttons" id="btn-new-game" value="n">NEW</button>
       <button class="control-buttons" id="btn-replay-game" value="r">REPLAY</button>
       <button class="control-buttons" id="btn-end-game" value="e">END</button>
       <br>
     </form>
     <div id="dialogue-div"></div>
+    <div id="display-hand"></div>
     <div>
       <input id="user-input" type="text">
       <button id="user-input-button">Send</button>
     </div>
-  </div>
+  </div>  
   
   
-  
-  
-  <script type="module" src="wordList.js"></script>
+  <script type="module" src="./words.js"></script>
   
   <script>
     const startButton = document.querySelector("#start-game");
