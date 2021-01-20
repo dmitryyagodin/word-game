@@ -1,5 +1,5 @@
 // Wordgame reworked from the python code ps4a.py and ps4b.py
-import WORDS from "./tests/words.js";
+import WORDS from "./words.js";
 const userInputButton = document.querySelector("#user-input-button");
 const COMPPLAY = document.querySelector('#computer');
 const userInput = document.querySelector("#user-input");
