@@ -219,9 +219,11 @@ function playGame(WORDS) {
   }
   
 }
-
+const GAME_FIELD = document.querySelector(".game-field")
 const STARTBUTTON = document.querySelector("#start-game-btn");
 STARTBUTTON.addEventListener('click', async (event) => {
   event.preventDefault();
+  GAME_FIELD.setAttribute('style', 'visibility: visible');
+  STARTBUTTON.setAttribute('style', 'display: none');
   return playGame(WORDS);
 });

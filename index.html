@@ -12,6 +12,7 @@
 <body>
   <div class="flex-container">
     <h1>WordGame</h1>
+    <p>(in active development)</p>
     <div class="game-info">Form words to score maximum points</div>
     <button id="start-game-btn">START</button>
     
@@ -30,36 +31,42 @@
       </form>
     
       <div id="dialogue-div"></div>
-    </div>
-    <div class="form-word-boxes">
-      <button type="submit" class="word-box" id="form-word-box-1"></button>
-      <button type="submit" class="word-box" id="form-word-box-2"></button>
-      <button type="submit" class="word-box" id="form-word-box-3"></button>
-      <button type="submit" class="word-box" id="form-word-box-4"></button>
-      <button type="submit" class="word-box" id="form-word-box-5"></button>
-      <button type="submit" class="word-box" id="form-word-box-6"></button>
-      <button type="submit" class="word-box" id="form-word-box-7"></button>
-      <button type="submit" class="word-box" id="form-word-box-8"></button>
+    
+      <div class="form-word-boxes">
+        <button type="submit" class="word-box" id="form-word-box-1"></button>
+        <button type="submit" class="word-box" id="form-word-box-2"></button>
+        <button type="submit" class="word-box" id="form-word-box-3"></button>
+        <button type="submit" class="word-box" id="form-word-box-4"></button>
+        <button type="submit" class="word-box" id="form-word-box-5"></button>
+        <button type="submit" class="word-box" id="form-word-box-6"></button>
+        <button type="submit" class="word-box" id="form-word-box-7"></button>
+        <button type="submit" class="word-box" id="form-word-box-8"></button>
+      </div>
+
+      <div id="check-user-input">
+        <input id="user-input" type="text" size="8" maxlength="8" placeholder="Max 8 letters">
+        <button id="user-input-button">CHECK</button>
+      </div>
+
+      <div class="display-hand-boxes">
+        <button type="submit" class="hand-box" id="display-hand-box-1"></button>
+        <button type="submit" class="hand-box" id="display-hand-box-2"></button>
+        <button type="submit" class="hand-box" id="display-hand-box-3"></button>
+        <button type="submit" class="hand-box" id="display-hand-box-4"></button>
+        <button type="submit" class="hand-box" id="display-hand-box-5"></button>
+        <button type="submit" class="hand-box" id="display-hand-box-6"></button>
+        <button type="submit" class="hand-box" id="display-hand-box-7"></button>
+        <button type="submit" class="hand-box" id="display-hand-box-8"></button>
+      </div>
     </div>
 
-    <div id="check-user-input">
-      <input id="user-input" type="text" size="8" maxlength="8" placeholder="Max 8 letters">
-      <button id="user-input-button">CHECK</button>
-    </div>
-
-    <div class="display-hand-boxes">
-      <button type="submit" class="hand-box" id="display-hand-box-1"></button>
-      <button type="submit" class="hand-box" id="display-hand-box-2"></button>
-      <button type="submit" class="hand-box" id="display-hand-box-3"></button>
-      <button type="submit" class="hand-box" id="display-hand-box-4"></button>
-      <button type="submit" class="hand-box" id="display-hand-box-5"></button>
-      <button type="submit" class="hand-box" id="display-hand-box-6"></button>
-      <button type="submit" class="hand-box" id="display-hand-box-7"></button>
-      <button type="submit" class="hand-box" id="display-hand-box-8"></button>
-    </div>
+    <div class="copyright"></div>
 
   </div>  
-   
+  <script>
+    let yearNow = new Date().getFullYear();
+    document.querySelector(".copyright").innerHTML = `&copy; ${yearNow} Dmitry Yagodin`;
+  </script> 
   <script type="module" src="./words.js"></script>
   <script type="module" src="./wordGame.js"></script>
   

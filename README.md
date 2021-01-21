@@ -1,5 +1,6 @@
 # Wordgame (Lexicon-Geek)
-
+This is a project in development
+A game app of the scrabble type.
 Words can be up to eight letters longs
 
 ## Development Process
