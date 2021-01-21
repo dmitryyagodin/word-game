@@ -7,7 +7,7 @@ const DIALOGUE = document.querySelector("#dialogue-div");
 const DISPLAYHAND = document.querySelector("#display-hand");
 const VOWELS = 'aeiou';
 const CONSONANTS = 'bcdfghjklmnpqrstvwxyz';
-const HANDSIZE = 12;
+let HANDSIZE = 8;
 const LETTER_VALUES = {
   'a': 1, 'b': 3, 'c': 3, 'd': 2, 'e': 1, 'f': 4, 'g': 2, 'h': 4, 'i': 1,
    'j': 8, 'k': 5, 'l': 1, 'm': 3, 'n': 1, 'o': 1, 'p': 3, 'q': 10, 'r': 1,
@@ -26,16 +26,15 @@ function getWordScore(word, HANDSIZE) {
   return score
 }
 
-function displayHand(hand) {
-  let output = "";
+function displayHand(hand, LETTER_VALUES) {
+  let boxNumber = 1;
   for (let item in hand) {
     for (let i = 1; i <= hand[item]; i++) {
-      output += item + " ";
+      document.querySelector(`#display-hand-box-${boxNumber}`)
+        .innerHTML = `${item} <sub>${LETTER_VALUES[item]}</sub>`;
+      boxNumber++;
     } 
   }
-  output = `Current Hand: ${output.trim().split(" ").sort().join(" ")}`
-  
-  return output;
 }
 
 function dealHand(HANDSIZE) {
@@ -100,8 +99,8 @@ function calculateHandlen(hand) {
 function playHand(hand, WORDS, HANDSIZE) {
   
   let total = 0;
+  displayHand(hand, LETTER_VALUES);
   
-  DISPLAYHAND.innerHTML = displayHand(hand);
   DIALOGUE.innerHTML += '\nEnter word, or a "." to indicate that you are finished:';
   userInputButton.addEventListener('click', async (event) => {
     
@@ -117,7 +116,7 @@ function playHand(hand, WORDS, HANDSIZE) {
         total += getWordScore(word, HANDSIZE);
         DIALOGUE.innerHTML += `\n"${word}" earned ${getWordScore(word, HANDSIZE)} points. Total: ${total} points`;
         hand = updateHand(hand, word);
-        DISPLAYHAND.innerHTML = "\n" + displayHand(hand);
+        displayHand(hand, LETTER_VALUES);
       }
     }
     if (calculateHandlen(hand) === 0) {
@@ -147,7 +146,7 @@ function compPlayHand(hand, WORDS, HANDSIZE) {
   let handLen = calculateHandlen(hand);
   
   while (handLen > 7) {
-    DISPLAYHAND.innerHTML = displayHand(hand);
+    displayHand(hand, LETTER_VALUES);
     let word = compChooseWord(hand, WORDS, HANDSIZE);
     DIALOGUE.innerHTML += `COMPUTER FOUND "${word}"`;
     if (!word) {
@@ -155,7 +154,7 @@ function compPlayHand(hand, WORDS, HANDSIZE) {
       break;
     } else {
       if (!isValidWord(word, hand, WORDS)) {
-        DISPLAYHAND.innerHTML = 'This is a terrible error! I need to check my own code!';
+        DIALOGUE.innerHTML = 'This is a terrible error! I need to check my own code!';
         break;
       } else {
         let score = getWordScore(word, HANDSIZE);
@@ -218,4 +217,8 @@ function playGame(WORDS) {
   
 }
 
-playGame(WORDS);
+const STARTBUTTON = document.querySelector("#start-game-btn");
+STARTBUTTON.addEventListener('click', async (event) => {
+  event.preventDefault();
+  return playGame(WORDS);
+});

@@ -10,7 +10,8 @@
 <body>
   <div class="flex-container">
     <h1>WordGame</h1>
-    <button id="start-game">Start the Game</button>
+    <div class="game-info">Form words to score maximum points</div>
+    <button id="start-game-btn">START</button>
     <div id="game-controls"></div>
     <form>
       <input type="radio" name="who-plays" id="player" value="player" checked="checked">
@@ -23,27 +24,24 @@
       <br>
     </form>
     <div id="dialogue-div"></div>
-    <div id="display-hand"></div>
     <div>
-      <input id="user-input" type="text">
+      <input id="user-input" type="text" size="8" maxlength="8" placeholder="Max 8 letters">
       <button id="user-input-button">Send</button>
     </div>
+    <div class="display-hand-boxes">
+      <div class="hand-box" id="display-hand-box-1"></div>
+      <div class="hand-box" id="display-hand-box-2"></div>
+      <div class="hand-box" id="display-hand-box-3"></div>
+      <div class="hand-box" id="display-hand-box-4"></div>
+      <div class="hand-box" id="display-hand-box-5"></div>
+      <div class="hand-box" id="display-hand-box-6"></div>
+      <div class="hand-box" id="display-hand-box-7"></div>
+      <div class="hand-box" id="display-hand-box-8"></div>
+    </div>
   </div>  
-  
-  
+   
   <script type="module" src="./words.js"></script>
   <script type="module" src="./wordGame.js"></script>
-  <!-- <script>
-    const startButton = document.querySelector("#start-game");
-    startButton.addEventListener('click', async (event) => {
-      event.preventDefault();
-      try {
-        const module = await import('./wordGame.js');
-        return module.playGame;
-      } catch (error) {
-        console.log(error);
-      }
-    });
-  </script> -->
+  
 </body>
 </html>

@@ -1,7 +1,45 @@
 .flex-container {
   display: flex;
-  width: 50%;
+  width: 80%;
   flex-direction: column;
   justify-content: center;
   margin: auto;
+}
+
+h1 {
+  align-self: center;
+}
+
+.game-info {
+  width: 60%;
+  align-self: center;
+  text-align: center;
+}
+
+#start-game-btn {
+  width: 50%;
+  height: 40px;
+  align-self: center;
+  margin: 20px 0 20px 0;
+  border-radius: 50%;
+  border: 2px solid rgb(134, 128, 128);
+  box-shadow: 5px 5px 12px 5px #888888;
+}
+
+.display-hand-boxes {
+  margin: auto;
+  display: flex;
+  border: 1px solid black;
+  justify-content: space-evenly;
+  width: auto;
+  height: 40px;
+}
+.hand-box {
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: center;
+  background-color: blueviolet;
+  width: 30px;
+  height: 30px;
+  align-self: center;
 }
