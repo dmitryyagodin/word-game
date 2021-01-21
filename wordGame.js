@@ -31,7 +31,7 @@ function displayHand(hand, LETTER_VALUES) {
   for (let item in hand) {
     for (let i = 1; i <= hand[item]; i++) {
       document.querySelector(`#display-hand-box-${boxNumber}`)
-        .innerHTML = `${item} <sub>${LETTER_VALUES[item]}</sub>`;
+        .innerHTML = `${item} <sub class="letter-value">${LETTER_VALUES[item]}</sub>`;
       boxNumber++;
     } 
   }
@@ -100,6 +100,7 @@ function playHand(hand, WORDS, HANDSIZE) {
   
   let total = 0;
   displayHand(hand, LETTER_VALUES);
+  console.log(hand);
   
   DIALOGUE.innerHTML += '\nEnter word, or a "." to indicate that you are finished:';
   userInputButton.addEventListener('click', async (event) => {
@@ -116,6 +117,7 @@ function playHand(hand, WORDS, HANDSIZE) {
         total += getWordScore(word, HANDSIZE);
         DIALOGUE.innerHTML += `\n"${word}" earned ${getWordScore(word, HANDSIZE)} points. Total: ${total} points`;
         hand = updateHand(hand, word);
+        console.log(hand);
         displayHand(hand, LETTER_VALUES);
       }
     }
@@ -170,6 +172,7 @@ function compPlayHand(hand, WORDS, HANDSIZE) {
 function playGame(WORDS) {
   let count = 0;
   let hand = dealHand(HANDSIZE);
+  
   const controlButtons = document.querySelectorAll('.control-buttons');
   document.querySelector("#game-controls").innerHTML = "Enter n to deal a new hand, r to replay the last hand, or e to end game:";
   let whoPlays = 'player';

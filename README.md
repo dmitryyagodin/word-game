@@ -5,7 +5,8 @@ Words can be up to eight letters longs
 ## Development Process
 
 21-Jan-2021
-- Reworked displayHand function to output letters in separate boxes and letter values subscripted
+- Designed a word forming element, added a new font and improved styling of the letters (2hours) 
+- Reworked displayHand function to output letters in separate boxes and letter values subscripted (2hours)
 20-Jan-2021
 - Added computer Play functionality to get "the best possible result" for a game
 

@@ -5,39 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WordGame</title>
   <link rel="stylesheet" href="./style.css">
-  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Potta+One&display=swap" rel="stylesheet">
+
 </head>
 <body>
   <div class="flex-container">
     <h1>WordGame</h1>
     <div class="game-info">Form words to score maximum points</div>
     <button id="start-game-btn">START</button>
-    <div id="game-controls"></div>
-    <form>
-      <input type="radio" name="who-plays" id="player" value="player" checked="checked">
-      <label for="player">Player</label>
-      <input type="radio" name="who-plays" id="computer" value="computer">
-      <label for="computer">Computer</label>
-      <button class="control-buttons" id="btn-new-game" value="n">NEW</button>
-      <button class="control-buttons" id="btn-replay-game" value="r">REPLAY</button>
-      <button class="control-buttons" id="btn-end-game" value="e">END</button>
-      <br>
-    </form>
-    <div id="dialogue-div"></div>
-    <div>
+    
+    <div class="game-field">
+      <div id="game-controls"></div>
+    
+      <form>
+        <input type="radio" name="who-plays" id="player" value="player" checked="checked">
+        <label for="player">Player</label>
+        <input type="radio" name="who-plays" id="computer" value="computer">
+        <label for="computer">Computer</label>
+        <button class="control-buttons" id="btn-new-game" value="n">NEW</button>
+        <button class="control-buttons" id="btn-replay-game" value="r">REPLAY</button>
+        <button class="control-buttons" id="btn-end-game" value="e">END</button>
+        <br>
+      </form>
+    
+      <div id="dialogue-div"></div>
+    </div>
+    <div class="form-word-boxes">
+      <button type="submit" class="word-box" id="form-word-box-1"></button>
+      <button type="submit" class="word-box" id="form-word-box-2"></button>
+      <button type="submit" class="word-box" id="form-word-box-3"></button>
+      <button type="submit" class="word-box" id="form-word-box-4"></button>
+      <button type="submit" class="word-box" id="form-word-box-5"></button>
+      <button type="submit" class="word-box" id="form-word-box-6"></button>
+      <button type="submit" class="word-box" id="form-word-box-7"></button>
+      <button type="submit" class="word-box" id="form-word-box-8"></button>
+    </div>
+
+    <div id="check-user-input">
       <input id="user-input" type="text" size="8" maxlength="8" placeholder="Max 8 letters">
-      <button id="user-input-button">Send</button>
+      <button id="user-input-button">CHECK</button>
     </div>
+
     <div class="display-hand-boxes">
-      <div class="hand-box" id="display-hand-box-1"></div>
-      <div class="hand-box" id="display-hand-box-2"></div>
-      <div class="hand-box" id="display-hand-box-3"></div>
-      <div class="hand-box" id="display-hand-box-4"></div>
-      <div class="hand-box" id="display-hand-box-5"></div>
-      <div class="hand-box" id="display-hand-box-6"></div>
-      <div class="hand-box" id="display-hand-box-7"></div>
-      <div class="hand-box" id="display-hand-box-8"></div>
+      <button type="submit" class="hand-box" id="display-hand-box-1"></button>
+      <button type="submit" class="hand-box" id="display-hand-box-2"></button>
+      <button type="submit" class="hand-box" id="display-hand-box-3"></button>
+      <button type="submit" class="hand-box" id="display-hand-box-4"></button>
+      <button type="submit" class="hand-box" id="display-hand-box-5"></button>
+      <button type="submit" class="hand-box" id="display-hand-box-6"></button>
+      <button type="submit" class="hand-box" id="display-hand-box-7"></button>
+      <button type="submit" class="hand-box" id="display-hand-box-8"></button>
     </div>
+
   </div>  
    
   <script type="module" src="./words.js"></script>

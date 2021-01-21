@@ -1,9 +1,10 @@
 .flex-container {
+  border: 1px solid black;
   display: flex;
-  width: 80%;
+  margin: auto;
+  width: 98%;
   flex-direction: column;
   justify-content: center;
-  margin: auto;
 }
 
 h1 {
@@ -17,8 +18,8 @@ h1 {
 }
 
 #start-game-btn {
-  width: 50%;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   align-self: center;
   margin: 20px 0 20px 0;
   border-radius: 50%;
@@ -26,20 +27,45 @@ h1 {
   box-shadow: 5px 5px 12px 5px #888888;
 }
 
-.display-hand-boxes {
-  margin: auto;
+.display-hand-boxes, .form-word-boxes {
+  margin: 10px auto 10px auto;
+  padding-left: 5px;
   display: flex;
+  flex-wrap: wrap;
   border: 1px solid black;
   justify-content: space-evenly;
-  width: auto;
-  height: 40px;
+  max-width: 400px;
+  height: auto;
 }
-.hand-box {
-  margin-left: 5px;
+.hand-box, .word-box {
+  position: relative;
+  padding: 0 0 5px 12px;
+  font-size: 1.2em;
   margin-right: 5px;
-  text-align: center;
-  background-color: blueviolet;
-  width: 30px;
-  height: 30px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: left;
+  font-family: 'Potta One', cursive;
+  font-weight: 300;
+  width: 45px;
+  height: 45px;
+}
+
+sub {
+  position: absolute;
+  top: 25px;
+  right: 1px;
+  font-size: 0.7em;
+}
+
+#check-user-input {
   align-self: center;
+  margin: 10px 0 10px 0;
+}
+
+.game-field {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: auto;
 }
