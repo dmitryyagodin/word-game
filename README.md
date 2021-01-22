@@ -4,7 +4,8 @@ A game app of the scrabble type.
 Words can be up to eight letters longs
 
 ## Development Process
-
+22-Jan-2021
+- Added a functionality that allows clicking a letter to send to the input form (3hours)  
 21-Jan-2021
 - Designed a word forming element, added a new font and improved styling of the letters (2hours) 
 - Reworked displayHand function to output letters in separate boxes and letter values subscripted (2hours)

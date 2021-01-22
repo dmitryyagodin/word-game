@@ -95,14 +95,23 @@ function calculateHandlen(hand) {
   return Object.entries(hand).reduce((a, item) => item[1] + a, 0);
 }
 
-
 function playHand(hand, WORDS, HANDSIZE) {
   
   let total = 0;
   displayHand(hand, LETTER_VALUES);
   console.log(hand);
   
-  DIALOGUE.innerHTML += '\nEnter word, or a "." to indicate that you are finished:';
+  DIALOGUE.innerHTML += 'Enter word, or a "." to indicate that you are finished:';
+  
+  const HAND_BOXES = document.querySelectorAll('.hand-box');
+  const FORM = document.querySelector(".form-word");
+
+  HAND_BOXES.forEach(letter =>letter.onclick = () => {
+    console.log(letter);
+    letter.setAttribute('style', 'display: none');
+    FORM.value += letter.innerText[0];
+  });
+  
   userInputButton.addEventListener('click', async (event) => {
     
     let word = await userInput.value;

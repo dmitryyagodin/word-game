@@ -31,7 +31,15 @@ h1, p {
   box-shadow: 5px 5px 12px 5px #888888;
 }
 
-.display-hand-boxes, .form-word-boxes {
+.form-word {
+  text-align: center;
+  font-size: 1.2em;
+  font-family: 'Potta One', cursive;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+}
+
+.display-hand-boxes {
   margin: 10px auto 10px auto;
   padding-left: 2px;
   display: flex;
@@ -41,7 +49,7 @@ h1, p {
   max-width: 400px;
   height: auto;
 }
-.hand-box, .word-box {
+.hand-box {
   text-transform: uppercase;
   position: relative;
   padding-right: 3px;
