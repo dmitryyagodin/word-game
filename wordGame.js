@@ -4,10 +4,9 @@ const userInputButton = document.querySelector("#user-input-button");
 const COMPPLAY = document.querySelector('#computer');
 const userInput = document.querySelector("#user-input");
 const DIALOGUE = document.querySelector("#dialogue-div");
-const DISPLAYHAND = document.querySelector("#display-hand");
 const VOWELS = 'aeiou';
 const CONSONANTS = 'bcdfghjklmnpqrstvwxyz';
-let HANDSIZE = 8;
+let HANDSIZE = 10;
 const LETTER_VALUES = {
   'a': 1, 'b': 3, 'c': 3, 'd': 2, 'e': 1, 'f': 4, 'g': 2, 'h': 4, 'i': 1,
    'j': 8, 'k': 5, 'l': 1, 'm': 3, 'n': 1, 'o': 1, 'p': 3, 'q': 10, 'r': 1,
@@ -181,9 +180,7 @@ function compPlayHand(hand, WORDS, HANDSIZE) {
 function playGame(WORDS) {
   let count = 0;
   let hand = dealHand(HANDSIZE);
-  
   const controlButtons = document.querySelectorAll('.control-buttons');
-  document.querySelector("#game-controls").innerHTML = "Enter n to deal a new hand, r to replay the last hand, or e to end game:";
   let whoPlays = 'player';
 
   COMPPLAY.addEventListener('change', async (event) => {
@@ -191,7 +188,6 @@ function playGame(WORDS) {
     await COMPPLAY.checked ? whoPlays = 'comp' : whoPlays = 'player';
   })
   
-
   for (let button of controlButtons) {
     button.addEventListener('click', async (event) => {
       event.preventDefault();
@@ -230,9 +226,10 @@ function playGame(WORDS) {
 }
 const GAME_FIELD = document.querySelector(".game-field")
 const STARTBUTTON = document.querySelector("#start-game-btn");
+const INTROPAGE = document.querySelector(".intro-page");
 STARTBUTTON.addEventListener('click', async (event) => {
   event.preventDefault();
   GAME_FIELD.setAttribute('style', 'visibility: visible');
-  STARTBUTTON.setAttribute('style', 'display: none');
+  INTROPAGE.setAttribute('style', 'display: none');
   return playGame(WORDS);
 });

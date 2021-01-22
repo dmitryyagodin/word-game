@@ -11,10 +11,28 @@
 </head>
 <body>
   <div class="flex-container">
-    <h1>WordGame</h1>
-    <p>(in active development)</p>
-    <div class="game-info">Form words to score maximum points</div>
-    <button id="start-game-btn">START</button>
+    <header>
+      <h1>WordGame</h1>
+      <p>(in active development)</p>
+    </header>
+    <div class="intro-page">
+      <div class="game-info">
+        Form words from random letters to score maximum points
+      </div>
+      <button id="start-game-btn">
+        START
+      </button>
+      <div id="example">
+        <p>EXAMPLE</p>
+        <button class="hand-box">J<sub>8</sub></button>
+        <button class="hand-box">A<sub>1</sub></button>
+        <button class="hand-box">Z<sub>10</sub></button>
+        <button class="hand-box">Z<sub>10</sub></button>
+        <p>(8+1+10+10)*4 = 116 points</p>
+        <p>+50 points for using all letters at once</p>
+      </div>
+    </div>
+    
     
     <div class="game-field">
       <div id="game-controls"></div>
@@ -46,6 +64,8 @@
         <button type="submit" class="hand-box" id="display-hand-box-6"></button>
         <button type="submit" class="hand-box" id="display-hand-box-7"></button>
         <button type="submit" class="hand-box" id="display-hand-box-8"></button>
+        <button type="submit" class="hand-box" id="display-hand-box-9"></button>
+        <button type="submit" class="hand-box" id="display-hand-box-10"></button>
       </div>
     </div>
 
