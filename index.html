@@ -19,9 +19,7 @@
       <div class="game-info">
         Form words from random letters to score maximum points
       </div>
-      <button id="start-game-btn">
-        START
-      </button>
+      <br>
       <div id="example">
         <p>EXAMPLE</p>
         <button class="hand-box">J<sub>8</sub></button>
@@ -29,8 +27,16 @@
         <button class="hand-box">Z<sub>10</sub></button>
         <button class="hand-box">Z<sub>10</sub></button>
         <p>(8+1+10+10)*4 = 116 points</p>
-        <p>+50 points for using all letters at once</p>
+        <p>+50 points for using all letters in one word</p>
       </div>
+      <button id="start-game-btn">
+        TRY
+      </button>
+      <br>
+      <div class="game-info">
+        Learn new "weird" words by asking for a highest scoring solution!*
+      </div>
+
     </div>
     
     
@@ -42,31 +48,38 @@
         <label for="player">Player</label>
         <input type="radio" name="who-plays" id="computer" value="computer">
         <label for="computer">Computer</label>
-        <button class="control-buttons" id="btn-new-game" value="n">NEW</button>
-        <button class="control-buttons" id="btn-replay-game" value="r">REPLAY</button>
-        <button class="control-buttons" id="btn-end-game" value="e">END</button>
+        <br>
+        <div id="controls">
+          <button class="control-buttons" id="btn-new-game" value="n">NEW GAME</button>
+          <button class="control-buttons" id="btn-replay-game" value="r">REPLAY</button>
+          <button class="control-buttons" id="btn-end-game" value="e">END</button>
+          <button class="control-buttons" id="btn-comp-play" value="comp">COMP</button>
+        </div>
+        
         <br>
       </form>
     
-      <div id="dialogue-div"></div>
-    
+          
       <div id="check-user-input">
-        <input id="user-input" class="form-word" type="text" size="18" maxlength="8">
-        <button id="user-input-button">CHECK</button>
+
+        <input id="user-input" class="form-word" type="text" size="18" maxlength="8" readonly>
+        <button type="submit" id="user-input-button">CHECK</button>
       </div>
 
       <div class="display-hand-boxes">
-        <button type="submit" class="hand-box" id="display-hand-box-1"></button>
-        <button type="submit" class="hand-box" id="display-hand-box-2"></button>
-        <button type="submit" class="hand-box" id="display-hand-box-3"></button>
-        <button type="submit" class="hand-box" id="display-hand-box-4"></button>
-        <button type="submit" class="hand-box" id="display-hand-box-5"></button>
-        <button type="submit" class="hand-box" id="display-hand-box-6"></button>
-        <button type="submit" class="hand-box" id="display-hand-box-7"></button>
-        <button type="submit" class="hand-box" id="display-hand-box-8"></button>
-        <button type="submit" class="hand-box" id="display-hand-box-9"></button>
-        <button type="submit" class="hand-box" id="display-hand-box-10"></button>
+        <button type="button" class="hand-box" id="box-1"></button>
+        <button type="button" class="hand-box" id="box-2"></button>
+        <button type="button" class="hand-box" id="box-3"></button>
+        <button type="button" class="hand-box" id="box-4"></button>
+        <button type="button" class="hand-box" id="box-5"></button>
+        <button type="button" class="hand-box" id="box-6"></button>
+        <button type="button" class="hand-box" id="box-7"></button>
+        <button type="button" class="hand-box" id="box-8"></button>
+        <button type="button" class="hand-box" id="box-9"></button>
+        <button type="button" class="hand-box" id="box-10"></button>
       </div>
+
+      <div id="dialogue-div"></div>
     </div>
 
     <div class="copyright"></div>

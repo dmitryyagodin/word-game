@@ -1,7 +1,7 @@
 // Wordgame reworked from the python code ps4a.py and ps4b.py
 import WORDS from "./words.js";
 const userInputButton = document.querySelector("#user-input-button");
-const COMPPLAY = document.querySelector('#computer');
+// const COMPPLAY = document.querySelector('#computer');
 const userInput = document.querySelector("#user-input");
 const DIALOGUE = document.querySelector("#dialogue-div");
 const VOWELS = 'aeiou';
@@ -29,7 +29,7 @@ function displayHand(hand, LETTER_VALUES) {
   let boxNumber = 1;
   for (let item in hand) {
     for (let i = 1; i <= hand[item]; i++) {
-      document.querySelector(`#display-hand-box-${boxNumber}`)
+      document.querySelector(`#box-${boxNumber}`)
         .innerHTML = `${item} <sub class="letter-value">${LETTER_VALUES[item]}</sub>`;
       boxNumber++;
     } 
@@ -116,11 +116,11 @@ function playHand(hand, WORDS, HANDSIZE) {
     let word = await userInput.value;
     event.preventDefault();
     if (word === '.') {
-      DIALOGUE.innerHTML += `\nGoodbye! Total score: ${total} points.`;
+      DIALOGUE.innerHTML += `Goodbye! Total score: ${total} points.`;
       return
     } else {
       if (isValidWord(word, hand, WORDS) === false) {
-        DIALOGUE.innerHTML += "\nInvalid word, please try again.";
+        DIALOGUE.innerHTML += "Invalid word, please try again.";
       } else {
         total += getWordScore(word, HANDSIZE);
         DIALOGUE.innerHTML += `\n"${word}" earned ${getWordScore(word, HANDSIZE)} points. Total: ${total} points`;
@@ -181,6 +181,7 @@ function playGame(WORDS) {
   let count = 0;
   let hand = dealHand(HANDSIZE);
   const controlButtons = document.querySelectorAll('.control-buttons');
+  const COMPPLAY = document.querySelector('#computer');
   let whoPlays = 'player';
 
   COMPPLAY.addEventListener('change', async (event) => {
@@ -201,7 +202,8 @@ function playGame(WORDS) {
           break;
         case 'rplayer':
           count === 0 ?
-          DIALOGUE.innerHTML = "You have not played a hand yet. Please play a new hand first!" :
+          alert("You have not played a hand yet. Please play a new hand first!") :
+          // DIALOGUE.innerHTML = "You have not played a hand yet. Please play a new hand first!" :
           playHand(hand, WORDS, HANDSIZE);
           break;
         case 'ncomp':
