@@ -30,7 +30,7 @@
         <p>+50 points for using all letters in one word</p>
       </div>
       <button id="start-game-btn">
-        TRY
+        START
       </button>
       <br>
       <div class="game-info">
@@ -44,29 +44,22 @@
       <div id="game-controls"></div>
     
       <form>
-        <input type="radio" name="who-plays" id="player" value="player" checked="checked">
-        <label for="player">Player</label>
-        <input type="radio" name="who-plays" id="computer" value="computer">
-        <label for="computer">Computer</label>
-        <br>
         <div id="controls">
-          <button class="control-buttons" id="btn-new-game" value="n">NEW GAME</button>
-          <button class="control-buttons" id="btn-replay-game" value="r">REPLAY</button>
-          <button class="control-buttons" id="btn-end-game" value="e">END</button>
-          <button class="control-buttons" id="btn-comp-play" value="comp">COMP</button>
+          <button class="control-buttons" id="btn-new-game" value="new">NEW</button>
+          <button class="control-buttons" id="btn-replay-game" value="replay">REPLAY</button>
+          <button class="control-buttons" id="btn-comp-play" value="comp">HINT</button>
+          <button class="control-buttons" id="btn-end-game" value="end">EXIT</button>
         </div>
-        
         <br>
       </form>
     
           
       <div id="check-user-input">
-
         <input id="user-input" class="form-word" type="text" size="18" maxlength="8" readonly>
-        <button type="submit" id="user-input-button">CHECK</button>
+        <button type="submit" id="user-input-btn">CHECK</button>
       </div>
 
-      <div class="display-hand-boxes">
+      <div class="hand-boxes">
         <button type="button" class="hand-box" id="box-1"></button>
         <button type="button" class="hand-box" id="box-2"></button>
         <button type="button" class="hand-box" id="box-3"></button>
@@ -80,6 +73,7 @@
       </div>
 
       <div id="dialogue-div"></div>
+      <div id="total-points"></div>
     </div>
 
     <div class="copyright"></div>
