@@ -232,7 +232,7 @@ function playGame(WORDS) {
 
 STARTBUTTON.addEventListener('click', async (event) => {
   event.preventDefault();
-  GAME_FIELD.setAttribute('style', 'visibility: visible');
+  GAME_FIELD.setAttribute('style', 'display: inline');
   INTROPAGE.setAttribute('style', 'display: none');
   return playGame(WORDS);
 });
