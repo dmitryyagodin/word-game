@@ -10,7 +10,7 @@ const HAND_BOXES = document.querySelectorAll('.hand-box');
 const GAME_FIELD = document.querySelector(".game-field")
 const STARTBUTTON = document.querySelector("#start-game-btn");
 const INTROPAGE = document.querySelector(".intro-page");
-let HANDSIZE = 10;
+let HANDSIZE = 8;
 const LETTER_VALUES = {
   'a': 1, 'b': 3, 'c': 3, 'd': 2, 'e': 1, 'f': 4, 'g': 2, 'h': 4, 'i': 1,
    'j': 8, 'k': 5, 'l': 1, 'm': 3, 'n': 1, 'o': 1, 'p': 3, 'q': 10, 'r': 1,
@@ -208,7 +208,7 @@ function playGame(WORDS) {
           break;
         case 'replay':
           count === 0 ?
-          DIALOGUE.innerHTML = "You have not played a hand yet. Please play a new hand first!" :
+          DIALOGUE.innerHTML = "You have not played a hand yet.<br>Please play a new hand first!" :
           playHand(hand, WORDS, HANDSIZE);
           break;
         case 'comp':
