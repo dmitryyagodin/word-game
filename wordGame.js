@@ -1,10 +1,10 @@
 // Wordgame reworked from the python code ps4a.py and ps4b.py
-import WORDS from "./words.js";
+import WORDS from "./words.js"; // this data includes over 83,000 valid English langauge words
 const userInputButton = document.querySelector("#user-input-btn");
 const TOTAL_POINTS = document.querySelector("#total-points");
 const userInput = document.querySelector("#user-input");
 const DIALOGUE = document.querySelector("#dialogue-div");
-const VOWELS = 'aeiouy'; // also includes letter "y"
+const VOWELS = 'aeiouy'; // note that vowels also include letter "y"
 const CONSONANTS = 'bcdfghjklmnpqrstvwxz';
 const HAND_BOXES = document.querySelectorAll('.hand-box');
 const GAME_FIELD = document.querySelector(".game-field")
@@ -44,7 +44,7 @@ function displayHand(hand, LETTER_VALUES) {
   }
   HAND_BOXES.forEach(box => {
     if (!box.innerHTML) {
-      box.setAttribute('style', 'display: none');
+      box.setAttribute('style', 'visibility: hidden');
     }
   });
   console.log("CURRENT HAND: ", handAsString);
@@ -120,8 +120,8 @@ function playHand(hand, WORDS, HANDSIZE) {
   displayHand(handCopy, LETTER_VALUES);
   
   HAND_BOXES.forEach(letter =>letter.onclick = () => {
-    letter.setAttribute('style', 'background-color: grey');
     userInput.value += letter.innerText[0];
+    letter.setAttribute('style', 'visibility: hidden');
   });
 
   userInputButton.onclick = () => {

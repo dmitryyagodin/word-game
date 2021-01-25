@@ -11,10 +11,9 @@ body {
 .flex-container {
   display: flex;
   margin: auto;
-  width: 100vw;
-  height: 100vh;
+  width: 95vw;
+  height: 95vh;
   flex-direction: column;
-  justify-content: center;
 }
 
 .intro-page, header {
@@ -33,13 +32,54 @@ body {
 }
 
 #start-game-btn {
-  width: 60px;
+  position: relative;
+  min-width: 100px;
   height: 60px;
   align-self: center;
   margin: 20px 0 20px 0;
-  border-radius: 50%;
-  border: 2px solid rgb(134, 128, 128);
-  box-shadow: 5px 5px 12px 5px #888888;
+  border-radius: 20px;
+  border: 0;
+  cursor: pointer;
+  background: linear-gradient(to right, #56ccf2, #2f80ed);  
+}
+
+#start-game-btn::before,
+#start-game-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(to right, #56ccf2, #2f80ed);
+  border-radius: 20px;
+  transition: all .5s ease-in-out;
+}
+
+#start-game-btn:hover::before {
+  filter: blur(5px);
+}
+#start-game-btn:hover::after {
+  filter: blur(15px);
+}
+#start-game-btn:hover {
+  animation: hue 3s linear infinite;
+}
+
+@keyframes hue {
+  0% {filter: hue-rotate(0deg);}
+  100% {filter: hue-rotate(360deg);}
+}
+
+#start-game-btn span {
+  position: relative;
+  z-index: 3;
+  color: #fff;
+  display: block;
+  padding: 1.3em;
+  font-weight: bold;
+  background-color: #2c2e36;
+  border-radius: 17px;
 }
 
 .form-word {
@@ -70,6 +110,15 @@ body {
   width: 50px;
   height: 50px;
   border-radius: 5px;
+}
+
+.hand-box {
+  cursor: pointer;
+}
+
+.hand-box:hover {
+  background: grey;
+  color: #FFF;
 }
 
 sub {
