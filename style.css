@@ -60,7 +60,7 @@ body {
   height: auto;
 }
 
-.hand-box {
+.hand-box, .example {
   text-transform: uppercase;
   position: relative;
   /* padding-right: 3px; */

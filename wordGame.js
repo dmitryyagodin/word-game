@@ -16,7 +16,6 @@ const LETTER_VALUES = {
    'j': 8, 'k': 5, 'l': 1, 'm': 3, 'n': 1, 'o': 1, 'p': 3, 'q': 10, 'r': 1,
     's': 1, 't': 1, 'u': 1, 'v': 4, 'w': 4, 'x': 8, 'y': 4, 'z': 10
 }
-// const LETTERS = Object.keys(HAND).sort();
 
 function getWordScore(word, HANDSIZE) {
   let score = 0;
@@ -32,15 +31,23 @@ function getWordScore(word, HANDSIZE) {
 function displayHand(hand, LETTER_VALUES) {
   HAND_BOXES.forEach(box => box.innerHTML = "");
   let boxNumber = 1;
-  
+  let handAsString = "";
+
   for (let item in hand) {
     for (let i = 1; i <= hand[item]; i++) {
       document.querySelector(`#box-${boxNumber}`)
-        .innerHTML = `${item} <sub class="letter-value">${LETTER_VALUES[item]}</sub>`;
+        .innerHTML = `${item} <sub>${LETTER_VALUES[item]}</sub>`;
       document.querySelector(`#box-${boxNumber}`).setAttribute('style', 'display: inline');
+      handAsString += item;
       boxNumber++;
     } 
   }
+  HAND_BOXES.forEach(box => {
+    if (!box.innerHTML) {
+      box.setAttribute('style', 'display: none');
+    }
+  });
+  console.log("CURRENT HAND: ", handAsString);
 }
 
 function dealHand(HANDSIZE) {
@@ -76,15 +83,18 @@ function updateHand(hand, word) {
 }
 
 function isValidWord(word, hand, WORDS) {
+  word = word.toLowerCase();
   let letters = Object.keys(hand).sort();
   let handCopy = {...hand};
-  
+  console.log("WORD in isValidWord: ", word);
   if (letters.some(letter => WORDS[letter].includes(word))) {
+    console.log("LETTERS OK");
     return word.split("").every(letter => {
       handCopy[letter]--;
       return handCopy[letter] >= 0;
     })
   } else {
+    console.log("LETTER NOT OK");
     return false
   }
 };
@@ -102,35 +112,37 @@ function calculateHandlen(hand) {
 }
 
 function playHand(hand, WORDS, HANDSIZE) {
+  DIALOGUE.innerHTML = "";
+  TOTAL_POINTS.innerHTML = "";
+  userInput.value = "";
   let total = 0;
-  displayHand(hand, LETTER_VALUES);
+  let handCopy = {...hand};
+  displayHand(handCopy, LETTER_VALUES);
   
   HAND_BOXES.forEach(letter =>letter.onclick = () => {
     letter.setAttribute('style', 'background-color: grey');
     userInput.value += letter.innerText[0];
   });
-  
-  userInputButton.addEventListener('click', async (event) => {
-    let word = await userInput.value;
-    event.preventDefault();
 
-    if (!isValidWord(word, hand, WORDS)) {
-        displayHand(hand, LETTER_VALUES);
-        DIALOGUE.innerHTML = "";
-        DIALOGUE.innerHTML += "Invalid word, please try again.<br>";
-      } else {
-        total += getWordScore(word, HANDSIZE);
-        DIALOGUE.innerHTML += `The word "${word}" earned ${getWordScore(word, HANDSIZE)} points.`
-        TOTAL_POINTS.innerHTML =  `Total: ${total} points<br>`;
-        hand = updateHand(hand, word);
-        displayHand(hand, LETTER_VALUES);
-      }
-          
+  userInputButton.onclick = () => {
+    let word = userInput.value.toLowerCase();
+    console.log(word);
+    if (!isValidWord(word, handCopy, WORDS)) {
+      displayHand(handCopy, LETTER_VALUES);
+      DIALOGUE.innerHTML = "";
+      DIALOGUE.innerHTML += "Invalid word, please try again.<br>";
+    } else {
+      total += getWordScore(word, HANDSIZE);
+      DIALOGUE.innerHTML += `${getWordScore(word, HANDSIZE)} points for <a href="https://www.google.com/search?q=${word}">"${word}"</a><br>`
+      TOTAL_POINTS.innerHTML =  `<br>Total: ${total} points<br>`;
+      handCopy = updateHand(handCopy, word);
+      displayHand(handCopy, LETTER_VALUES);
+    }
     if (calculateHandlen(hand) === 0) {
       DIALOGUE.innerHTML += "<br>Run out of letters. Total score: " + total + " points.";
     }
     userInput.value = "";
-  })
+  }
 }
 
 function compChooseWord(hand) {
@@ -152,23 +164,27 @@ function compPlayHand(hand, WORDS, HANDSIZE) {
   let handCopy = {...hand};
   let totalScore = 0;
   let handLen = calculateHandlen(hand);
-  let count = 1;
+  let count = 0;
+  DIALOGUE.innerHTML = "The best solution: <br><br>";
   while (handLen > 7) {
     displayHand(handCopy, LETTER_VALUES);
     let word = compChooseWord(handCopy, WORDS, HANDSIZE);
     
-    if (!word) {
-      DIALOGUE.innerHTML += `Round ${count}: no word found`;
-      break;
-    } else {
+    if (word) {
       let score = getWordScore(word, HANDSIZE);
       totalScore += score
-      DIALOGUE.innerHTML += `Round ${count}: ${getWordScore(word, HANDSIZE)} points for "${word}"<br>`
-      TOTAL_POINTS.innerHTML = `Total: ${totalScore} points<br>`;
+      DIALOGUE.innerHTML += `${getWordScore(word, HANDSIZE)} points for <a href="https://www.google.com/search?q=${word}">"${word}"</a><br>`
+      TOTAL_POINTS.innerHTML = `<br>Total: ${totalScore} points<br>`;
       handCopy = updateHand(handCopy, word);
       count++;
+    } else {
+      break;      
     }
   }
+  if (count === 0) {
+    DIALOGUE.innerHTML = "No words found, try new letters";
+  }
+
   displayHand(hand, LETTER_VALUES);
 }
 
@@ -176,17 +192,17 @@ function compPlayHand(hand, WORDS, HANDSIZE) {
 function playGame(WORDS) {
   let count = 0;
   let hand = dealHand(HANDSIZE);
-  const controlButtons = document.querySelectorAll('.control-buttons');
+  const CONTROLS = document.querySelectorAll('.control-buttons');
   
-  for (let button of controlButtons) {
+  for (let button of CONTROLS) {
     button.addEventListener('click', async (event) => {
       event.preventDefault();
-      const game = await button.value;
-      console.log("GAME TYPE: ", game);
+      let game = await button.value;
+      displayHand(hand, LETTER_VALUES);
+      console.log("CHECK THE HAND!");
       switch(game) {
         case 'new':
-          DIALOGUE.innerHTML = "";
-          hand = dealHand(HANDSIZE);
+          hand = dealHand(HANDSIZE)
           playHand(hand, WORDS, HANDSIZE);
           count++;
           break;
@@ -202,12 +218,11 @@ function playGame(WORDS) {
           break;
         case 'end':
           GAME_FIELD.setAttribute('style', 'visibility: hidden');
-          INTROPAGE.setAttribute('style', 'display: initial');
+          INTROPAGE.setAttribute('style', 'display: inline');
           TOTAL_POINTS.innerHTML = "";
           DIALOGUE.innerHTML = "";
           document.querySelectorAll(".hand-box").forEach(item => item.innerText = "");
-
-          return "END OF GAME";
+          break;
         default:
           DIALOGUE.innerHTML = "Invalid command.";
       }  
