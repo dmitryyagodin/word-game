@@ -8,10 +8,11 @@ const VOWELS = 'aeiouy'; // note that vowels also include letter "y"
 const CONSONANTS = 'bcdfghjklmnpqrstvwxz';
 const HAND_BOXES = document.querySelectorAll('.hand-box');
 const BOX_DIV = document.querySelector(".display-hand-boxes");
+const CHECK_DIV = document.querySelector("#check-user-input");
 const GAME_FIELD = document.querySelector(".game-field")
 const STARTBUTTON = document.querySelector("#start-game-btn");
 const INTROPAGE = document.querySelector(".intro-page");
-let HANDSIZE = 8;
+const HANDSIZE = 8;
 const LETTER_VALUES = {
   'a': 1, 'b': 3, 'c': 3, 'd': 2, 'e': 1, 'f': 4, 'g': 2, 'h': 4, 'i': 1,
    'j': 8, 'k': 5, 'l': 1, 'm': 3, 'n': 1, 'o': 1, 'p': 3, 'q': 10, 'r': 1,
@@ -48,7 +49,6 @@ function displayHand(hand, LETTER_VALUES) {
       box.setAttribute('style', 'visibility: hidden');
     }
   });
-  console.log("CURRENT HAND: ", handAsString);
 }
 
 function dealHand(HANDSIZE) {
@@ -87,15 +87,13 @@ function isValidWord(word, hand, WORDS) {
   word = word.toLowerCase();
   let letters = Object.keys(hand).sort();
   let handCopy = {...hand};
-  console.log("WORD in isValidWord: ", word);
+  
   if (letters.some(letter => WORDS[letter].includes(word))) {
-    console.log("LETTERS OK");
     return word.split("").every(letter => {
       handCopy[letter]--;
       return handCopy[letter] >= 0;
     })
   } else {
-    console.log("LETTER NOT OK");
     return false
   }
 };
@@ -127,18 +125,22 @@ function playHand(hand, WORDS, HANDSIZE) {
 
   userInputButton.onclick = () => {
     let word = userInput.value.toLowerCase();
-    console.log(word);
+    
     if (!isValidWord(word, handCopy, WORDS)) {
       displayHand(handCopy, LETTER_VALUES);
       DIALOGUE.innerHTML = "";
       DIALOGUE.innerHTML += "Invalid word, please try again.<br>";
-    } else {
+    } 
+    
+    else {
       total += getWordScore(word, HANDSIZE);
-      DIALOGUE.innerHTML += `${getWordScore(word, HANDSIZE)} points for <a href="https://www.google.com/search?q=${word}">"${word}"</a><br>`
+      DIALOGUE.innerHTML = `${getWordScore(word, HANDSIZE)} points for <em>"${word}"</em><br>`
+      getDefinition(word);
       TOTAL_POINTS.innerHTML =  `<br>Total: ${total} points<br>`;
       handCopy = updateHand(handCopy, word);
       displayHand(handCopy, LETTER_VALUES);
     }
+
     if (calculateHandlen(hand) === 0) {
       DIALOGUE.innerHTML += "<br>Run out of letters. Total score: " + total + " points.";
     }
@@ -174,7 +176,8 @@ function compPlayHand(hand, WORDS, HANDSIZE) {
     if (word) {
       let score = getWordScore(word, HANDSIZE);
       totalScore += score
-      DIALOGUE.innerHTML += `${getWordScore(word, HANDSIZE)} points for <a href="https://www.google.com/search?q=${word}">"${word}"</a><br>`
+      DIALOGUE.innerHTML += `${getWordScore(word, HANDSIZE)} points for <em>"${word}"</em><br>`
+      getDefinition(word);
       TOTAL_POINTS.innerHTML = `<br>Total: ${totalScore} points<br>`;
       handCopy = updateHand(handCopy, word);
       count++;
@@ -200,12 +203,13 @@ function playGame(WORDS) {
       event.preventDefault();
       let game = await button.value;
       displayHand(hand, LETTER_VALUES);
-      console.log("CHECK THE HAND!");
+      
       switch(game) {
         case 'new':
           hand = dealHand(HANDSIZE)
           playHand(hand, WORDS, HANDSIZE);
           BOX_DIV.setAttribute('style', 'visibility: visible');
+          CHECK_DIV.setAttribute('style', 'visibility: visible');
           count++;
           break;
         case 'replay':
@@ -233,6 +237,14 @@ function playGame(WORDS) {
   }  
 }
 
+function getDefinition(word) {
+  fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+  .then(response => response.json())
+  .then(definition => DIALOGUE.innerHTML += `<br>"${word}" means: <blockquote>"${definition[0].meanings[0].definitions[0].definition}"</blockquote> (source: <i>Oxford Languages and Google</i>)<br><br>`);
+}
+
+// Wait for the button click to start the game
+// Turn off the intro page and display the game field
 STARTBUTTON.addEventListener('click', async (event) => {
   event.preventDefault();
   INTROPAGE.setAttribute('style', 'display: none');

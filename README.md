@@ -4,6 +4,8 @@ A game app of the scrabble type.
 Words can be up to eight letters longs
 
 ## Development Process
+26-Jan-2021
+- Added google dicionary API to fetch and display definitions;
 25-Jan-2021
 - First working version
 22-Jan-2021
@@ -19,4 +21,5 @@ Words can be up to eight letters longs
 Started the project
 
 ## Back log
+- fix the error of being able to form a word after the hint is used
 
