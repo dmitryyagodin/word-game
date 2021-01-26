@@ -7,6 +7,7 @@ const DIALOGUE = document.querySelector("#dialogue-div");
 const VOWELS = 'aeiouy'; // note that vowels also include letter "y"
 const CONSONANTS = 'bcdfghjklmnpqrstvwxz';
 const HAND_BOXES = document.querySelectorAll('.hand-box');
+const BOX_DIV = document.querySelector(".display-hand-boxes");
 const GAME_FIELD = document.querySelector(".game-field")
 const STARTBUTTON = document.querySelector("#start-game-btn");
 const INTROPAGE = document.querySelector(".intro-page");
@@ -204,6 +205,7 @@ function playGame(WORDS) {
         case 'new':
           hand = dealHand(HANDSIZE)
           playHand(hand, WORDS, HANDSIZE);
+          BOX_DIV.setAttribute('style', 'visibility: visible');
           count++;
           break;
         case 'replay':
@@ -219,6 +221,7 @@ function playGame(WORDS) {
         case 'end':
           GAME_FIELD.setAttribute('style', 'visibility: hidden');
           INTROPAGE.setAttribute('style', 'display: inline');
+          BOX_DIV.setAttribute('style', 'visibility: hidden' )
           TOTAL_POINTS.innerHTML = "";
           DIALOGUE.innerHTML = "";
           document.querySelectorAll(".hand-box").forEach(item => item.innerText = "");
@@ -232,7 +235,7 @@ function playGame(WORDS) {
 
 STARTBUTTON.addEventListener('click', async (event) => {
   event.preventDefault();
-  GAME_FIELD.setAttribute('style', 'display: inline');
   INTROPAGE.setAttribute('style', 'display: none');
+  GAME_FIELD.setAttribute('style', 'display: flex');
   return playGame(WORDS);
 });

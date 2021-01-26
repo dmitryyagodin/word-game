@@ -4,6 +4,8 @@ A game app of the scrabble type.
 Words can be up to eight letters longs
 
 ## Development Process
+25-Jan-2021
+- First working version
 22-Jan-2021
 - Added and styled an intro page (example, rules, display hidden after start button click)
 - Added a functionality that allows clicking a letter to send to the input form (2hours)  
@@ -17,6 +19,4 @@ Words can be up to eight letters longs
 Started the project
 
 ## Back log
-- limit user input by 8 letter's words
-- enable "send" by enter key
-- allow the user to choose the amout of letters to play
+

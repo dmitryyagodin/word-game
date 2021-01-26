@@ -10,9 +10,8 @@ body {
 
 .flex-container {
   display: flex;
-  margin: auto;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   flex-direction: column;
 }
 
@@ -88,12 +87,19 @@ body {
   text-transform: uppercase;
 }
 
-.hand-boxes {
+.display-hand-boxes {
   margin: 10px auto 10px auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   height: auto;
+  visibility: hidden;
+}
+
+@media (max-width: 650px) {
+  .display-hand-boxes {
+    max-width: 320px;
+  }
 }
 
 .hand-box, .example {
@@ -106,7 +112,7 @@ body {
   font-family: 'Potta One', cursive;
   width: 55px;
   height: 55px;
-  border-radius: 5px;
+  border-radius: 7px;
 }
 
 .hand-box {
@@ -146,36 +152,58 @@ sub {
   justify-content: center;
 }
 
-#user-input-button {
+@media (max-width: 360px) {
+  #check-user-input {
+    max-width: 250px;
+  }
+}
+
+#user-input-btn {
   height: 33.33px;
+  border-radius: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+#user-input-btn:hover {
+  background: #56ccf2;
+  color: #FFF;
+}
+
+
+#user-input {
+  border-radius: 5px;
+  cursor: default;
 }
 
 .game-field {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 650px;
-  margin: 20px auto 20px auto;
+  margin: 20px 2px 20px 2px;
   display: none;
 }
 
 .copyright {
-  margin-top: 100px;
-  width: 100%;
-  position: relative;
-  top: 50px;
-  bottom: 2px;
+  margin-top: 50px;
   text-align: center;
 }
 
 #controls {
   display: flex;
-  justify-content: space-evenly;
-  flex-wrap: nowrap;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 460px) {
+  #controls {
+    max-width: 250px;
+  }
 }
 
 .control-buttons {
-  flex-basis: 24%;
+  width: 100px;
+  margin: 5px;
   height: 50px;
   transition: background-color 0.5s, color 0.5s;
   border-radius: 20px;

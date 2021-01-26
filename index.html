@@ -49,11 +49,11 @@
       <br>
           
       <div id="check-user-input">
-        <input id="user-input" class="form-word" type="text" size="18" maxlength="8" readonly>
+        <input id="user-input" class="form-word" type="text" size="10" maxlength="8" readonly>
         <button type="submit" id="user-input-btn">CHECK</button>
       </div>
 
-      <div class="hand-boxes">
+      <div class="display-hand-boxes">
         <button type="button" class="hand-box" id="box-1"></button>
         <button type="button" class="hand-box" id="box-2"></button>
         <button type="button" class="hand-box" id="box-3"></button>
@@ -63,14 +63,11 @@
         <button type="button" class="hand-box" id="box-7"></button>
         <button type="button" class="hand-box" id="box-8"></button>
       </div>
-
       <div id="dialogue-div"></div>
       <div id="total-points"></div>
     </div>
-
     <div class="copyright"></div>
-
-  </div>  
+  </div>
   <script>
     let yearNow = new Date().getFullYear();
     document.querySelector(".copyright").innerHTML = `&copy; ${yearNow} Dmitry Yagodin`;
