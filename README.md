@@ -1,14 +1,16 @@
 <h1>Wordgame</h1>
-<div>
-<figure style="float: right">
+<div style="width:50%; display:inline; float:left">
+<p>This is a web-based game app. The game has a logic of a popular board game called Scrabble. Here you try to form words from a random set of 8 letters.</p>
+<p>
+Currently the app is using a list of about 83,000 English langauge words. This list serves as a validity check for the choices made the player and for finding the highest scoring words in a "computer mode".</p>
+</div>
+<figure style="display:inline; float:right">
   <img src="https://storage.googleapis.com/ltkcms.appspot.com/fs/wfa/images/cover/scrabble-tiles-full-alphabet.base" width="300">
   <figcaption>Source: <a href="https://wordfinder.yourdictionary.com/blog/scrabble-letter-tile-fonts/">WordFinder</a></figcaption> 
 </figure>
-<p >This is a web-based game app. The game has a logic of a popular board game called Scrabble. Here you try to form words from a random set of 8 letters.</p>
-<p >Currently the app is using a list of about 83,000 English langauge words. This list serves as a validity check for the choices made the player and for finding the highest scoring words in a "computer mode".</p>
-</div>
 
-<h2>Development Process</h2>
+
+<h2 style="clear:both">Development Process</h2>
 
 26-Jan-2021
 - Added google dicionary API to fetch and display definitions
