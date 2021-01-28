@@ -15,7 +15,7 @@ body {
   flex-direction: column;
 }
 
-.intro-page, header {
+.home-page, header {
   align-self: center;
   color: #fff;
   padding: 2px 5px 2px 5px;
@@ -96,9 +96,21 @@ body {
   visibility: hidden;
 }
 
-@media (max-width: 650px) {
+@media (min-width: 760px) {
   .display-hand-boxes {
-    max-width: 320px;
+    width: 700px;
+  }
+}
+
+@media (max-width: 760px) {
+  .display-hand-boxes {
+    width: 390px;
+  }
+}
+
+@media (max-width: 460px) {
+  .display-hand-boxes {
+    width: 230px;
   }
 }
 
@@ -246,4 +258,16 @@ a {
 a:hover {
   background:#56ccf2;
   color: black;
+}
+
+footer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-bottom: 5px;
+}
+
+span.reference {
+  font-size:0.5em;
 }

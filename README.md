@@ -3,6 +3,14 @@
 <p>This is a web-based game app. The game has a logic of a popular board game called *Scrabble*. Here you try to form words from a random set of 8 letters.</p>
 <p>Currently, the app is using a list of about 83,000 English language words. This list serves as a validity check for the choices made by the player and for finding the highest scoring words in a "computer play mode."</p> 
 
+## Tools and technologies used
+
+- HTML
+- CSS
+- JavaScript
+
+Word definitions come from a rate-limited [Google Dictionary API](https://github.com/meetDeveloper/googleDictionaryAPI). When the limit is exceeded, the app stops displaying definitions.
+
 ## Task list
 - Add google dictinary api to fetch words' definitions
 - Add google search links to those words that were found in the data source but didn't recieve definitions

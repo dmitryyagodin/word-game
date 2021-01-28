@@ -11,7 +11,7 @@ const BOX_DIV = document.querySelector(".display-hand-boxes");
 const CHECK_DIV = document.querySelector("#check-user-input");
 const GAME_FIELD = document.querySelector(".game-field")
 const STARTBUTTON = document.querySelector("#start-game-btn");
-const INTROPAGE = document.querySelector(".intro-page");
+const HOME_PAGE = document.querySelector(".home-page");
 const HANDSIZE = 8;
 const LETTER_VALUES = {
   'a': 1, 'b': 3, 'c': 3, 'd': 2, 'e': 1, 'f': 4, 'g': 2, 'h': 4, 'i': 1,
@@ -134,7 +134,7 @@ function playHand(hand, WORDS, HANDSIZE) {
     
     else {
       total += getWordScore(word, HANDSIZE);
-      DIALOGUE.innerHTML = `${getWordScore(word, HANDSIZE)} points for <em>"${word}"</em><br>`
+      DIALOGUE.innerHTML = `Yes! It's a word.<br>${getWordScore(word, HANDSIZE)} points for <em>"${word}"</em><br>`
       getDefinition(word);
       TOTAL_POINTS.innerHTML =  `<br>Total: ${total} points<br>`;
       handCopy = updateHand(handCopy, word);
@@ -224,11 +224,12 @@ function playGame(WORDS) {
           break;
         case 'end':
           GAME_FIELD.setAttribute('style', 'visibility: hidden');
-          INTROPAGE.setAttribute('style', 'display: inline');
-          BOX_DIV.setAttribute('style', 'visibility: hidden' )
+          BOX_DIV.setAttribute('style', 'visibility: hidden');
+          CHECK_DIV.setAttribute('style', 'visibility: hidden');
           TOTAL_POINTS.innerHTML = "";
           DIALOGUE.innerHTML = "";
-          document.querySelectorAll(".hand-box").forEach(item => item.innerText = "");
+          HOME_PAGE.setAttribute('style', 'display: inline');
+          HAND_BOXES.forEach(item => item.innerText = "");
           break;
         default:
           DIALOGUE.innerHTML = "Invalid command.";
@@ -240,14 +241,19 @@ function playGame(WORDS) {
 function getDefinition(word) {
   fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
   .then(response => response.json())
-  .then(definition => DIALOGUE.innerHTML += `<br>"${word}" means: <blockquote>"${definition[0].meanings[0].definitions[0].definition}"</blockquote> (source: <i>Oxford Languages and Google</i>)<br><br>`);
+  .then(definition => {
+    const wordDefinition = definition[0].meanings[0].definitions[0].definition;
+    const reference = "(source: <i>Oxford Languages and Google</i>)";
+    DIALOGUE.innerHTML += `<br>"${word}" means: <blockquote>"${wordDefinition}"</blockquote><span class="reference">${reference}</span><br><br>`
+  });
+  
 }
 
 // Wait for the button click to start the game
 // Turn off the intro page and display the game field
 STARTBUTTON.addEventListener('click', async (event) => {
   event.preventDefault();
-  INTROPAGE.setAttribute('style', 'display: none');
+  HOME_PAGE.setAttribute('style', 'display: none');
   GAME_FIELD.setAttribute('style', 'display: flex');
   return playGame(WORDS);
 });
