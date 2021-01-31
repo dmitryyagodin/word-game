@@ -5,7 +5,8 @@
 
 ## User interface
 <img align="left" src="images\2021-01-31_(375x667)_homepage.png" width="300">
-<img align="right" src="images\2021-01-31_(375x667)_play.png" width="300">
+<img align="right" src="images\2021-01-31_(375x667)_play.png" width="100">
+
 
 ## Tools and technologies used
 
