@@ -43,13 +43,8 @@ The second view consists of several clickable buttons:
 
 Word definitions come from a rate-limited [Google Dictionary API](https://github.com/meetDeveloper/googleDictionaryAPI). When the limit is exceeded, the app stops displaying definitions.
 
-## Task list
-- Add google dictinary api to fetch words' definitions
-- Add google search links to those words that were found in the data source but didn't recieve definitions
-- fix the error of being able to form a word after the hint is used
 
 ## Development Process
-
 #### 26-Jan-2021
                   - Added google dicionary API to fetch and display definitions
 #### 25-Jan-2021
