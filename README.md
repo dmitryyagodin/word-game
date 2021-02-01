@@ -17,7 +17,7 @@ The page also promises an intriguing experience of learning some "weird" words t
 <br>
 
 <p align="center">
-  <img src="https://github.com/dmitryyagodin/word-game/blob/main/images/home_screen.png" width="600">
+  <img src="https://github.com/dmitryyagodin/word-game/blob/main/images/home_screen.png" width="600" alt="Home screen">
 <p/>
 
 
@@ -27,10 +27,10 @@ The second view consists of several clickable buttons:
   - At any point the player may try to play the same set of letters again by clicking the **REPLAY** button.
   - It is possible to check the best possible solution for a current set of letters with the **HINT** button. Clicking the button switches the game into a computer-play mode wherein the app automatically finds the highest-scoring words based on the current set of letters among the list of over 83,000 words (see words.js)
   - **EXIT** returns the user to the homepage and resets the gameplay 
-  
-![Play options](https://github.com/dmitryyagodin/word-game/blob/main/images/new_game.PNG)
 
-
+<p align="center">
+  <img src="https://github.com/dmitryyagodin/word-game/blob/main/images/new_game.PNG" width="600" alt="Play options">
+<p/>
 
 
 ## Tools and technologies used
