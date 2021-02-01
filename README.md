@@ -15,8 +15,10 @@ The game has two main views. The first one is the homepage, where the user gets 
 <br>
 The page also promises an intriguing experience of learning some "weird" words that the app will be able to show as the highest-scoring solutions. The sole UI element of the page is the glowing **START** button that is set to permanently change colors. Clicking the button updates the page so that the second of view (Game) is on and the homepage becomes hidden.
 <br>
-![Homepage screenshot](https://github.com/dmitryyagodin/word-game/blob/main/images/home_screen.png)
 
+<p align="center">
+  <img src="https://github.com/dmitryyagodin/word-game/blob/main/images/home_screen.png" width="600">
+<p/>
 
 
 ### Play options 
