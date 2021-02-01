@@ -1,7 +1,12 @@
 # Wordgame
-This is a web-based game app. The game has a logic of a popular board game called *Scrabble*. Here you try to form words from a random set of 8 letters.
+<img align="right" src="https://storage.googleapis.com/ltkcms.appspot.com/fs/wfa/images/cover/scrabble-tiles-full-alphabet.base" width="350">
 
-Currently, the app is using a list of about 83,000 English language words. This list serves as a validity check for the choices made by the player and for finding the highest scoring words in a "computer play mode."
+This is a web-based game app. The game has a logic of a popular board game called *Scrabble*. In this version of the game, the player is invited to form words from a random set of 8 letters. Each letter has its own score so that the letters that typically appear less frequently in the English-language words get higher scores. The sum of letter scores is then multiplied by the number of letters used to form the word. In case the player uses all 8 letters to form a single word, the overall score gets 50 bonus points.
+
+
+Currently, in the background the app is using a list of about 83,000 English-language words. This list serves as a validity check for the choices made by the player and for finding the highest scoring words in a "computer play mode."
+
+In addition the app displays definitions for the valid words (see below for limitations of this feature). Especially the words found by the computer may be quite rare and unknown to most people, even native speakers, which makes the game an intriguing linguistic inquiry.  
 
 
 ## User interface
