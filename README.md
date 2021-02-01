@@ -4,7 +4,7 @@
 <p>Currently, the app is using a list of about 83,000 English language words. This list serves as a validity check for the choices made by the player and for finding the highest scoring words in a "computer play mode."</p> 
 
 ## User interface
-<img align="left" src="images\2021-01-31_(375x667)_homepage.png" width="300">
+<img align="left" src="images\home_screen.png" width="300">
 <img align="right" src="images\2021-01-31_(375x667)_play.png" width="300">
 
 ## Tools and technologies used
