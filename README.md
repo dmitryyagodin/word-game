@@ -4,8 +4,16 @@
 <p>Currently, the app is using a list of about 83,000 English language words. This list serves as a validity check for the choices made by the player and for finding the highest scoring words in a "computer play mode."</p> 
 
 ## User interface
-<img align="left" src="images\2021-01-31_(375x667)_homepage.png" width="250">
-<img align="left" src="images\2021-01-31_(375x667)_play.png" width="250">
+The game has two main views. The first one is the homepage, where the user gets a basic understanding of the game and can decide to enter ("start") the actual playing mode.
+<p align="center">
+ <img align="left" src="https://github.com/dmitryyagodin/word-game/blob/main/images/2021-01-31_(375x667)_homepage.png" width="250" alt="Homepage screenshot>
+</p>
+
+The second view allows several clickable buttons: 
+- play a **NEW** game that updates the set of 8 random letters and shows them in the game field
+- try the same set of letters again by clicking **REPLAY**
+- get the best possible solution with a **HINT** that comes up with the highest-scoring words based on the current set of letters and the list of over 83,000 words (see words.js)
+- **EXIT** returns the user to the homepage and resets the gameplay 
 
 
 ## Tools and technologies used
