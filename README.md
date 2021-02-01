@@ -4,16 +4,19 @@
 <p>Currently, the app is using a list of about 83,000 English language words. This list serves as a validity check for the choices made by the player and for finding the highest scoring words in a "computer play mode."</p> 
 
 ## User interface
+### Homepage
 <img align="left" src="https://github.com/dmitryyagodin/word-game/blob/main/images/home_screen.png" width="485" alt="Homepage screenshot">
 The game has two main views. The first one is the homepage, where the user gets a basic understanding of the game and can decide to enter ("start") the actual playing mode. The homepage shows an example to briefly describe how the scores are calculated.
 
-The page also promises an intriguing experience of learning some "weird" words that the app will be able to show as the highest-scoring solutions. The sole UI element of the page is the glowing **START** button that is set to permanently change colors. Clicking the button updates the page so that the second of view is on and the homepage becomes hidden.
+The page also promises an intriguing experience of learning some "weird" words that the app will be able to show as the highest-scoring solutions. The sole UI element of the page is the glowing **START** button that is set to permanently change colors. Clicking the button updates the page so that the second of view (Game) is on and the homepage becomes hidden.
 <p></p>
 <p></p>
 <br>
 <hr>
-<img align="right" src="https://github.com/dmitryyagodin/word-game/blob/main/images/new_game.PNG" width="480" alt="Gameplay screenshot">
 
+### Game
+
+<img align="right" src="https://github.com/dmitryyagodin/word-game/blob/main/images/new_game.PNG" width="480" alt="Gameplay screenshot">
 The second view consists of several clickable buttons:
 
   - The **NEW** button launches the first game or updates the set of 8 random letters, if it is not the first game. The click renders random letters inside the game field.
