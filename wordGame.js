@@ -253,6 +253,5 @@ STARTBUTTON.addEventListener('click', async (event) => {
   event.preventDefault();
   HOME_PAGE.setAttribute('style', 'display: none');
   GAME_FIELD.setAttribute('style', 'display: flex');
-  document.querySelector("#control-btn-new").classList.add("highlight-btn");
   return playGame(WORDS);
 });

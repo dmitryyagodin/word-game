@@ -110,7 +110,16 @@ body {
 
 @media (max-width: 460px) {
   .display-hand-boxes {
-    width: 230px;
+    width: 320px;  
+  }
+  header {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .display-hand-boxes {
+    width: 200px;
   }
 }
 
