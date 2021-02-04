@@ -117,7 +117,7 @@ body {
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 358px) {
   .display-hand-boxes {
     width: 200px;
   }
