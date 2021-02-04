@@ -33,14 +33,11 @@ function getWordScore(word, HANDSIZE) {
 function displayHand(hand, LETTER_VALUES) {
   HAND_BOXES.forEach(box => box.innerHTML = "");
   let boxNumber = 1;
-  let handAsString = "";
-
   for (let item in hand) {
     for (let i = 1; i <= hand[item]; i++) {
       document.querySelector(`#box-${boxNumber}`)
         .innerHTML = `${item} <sub>${LETTER_VALUES[item]}</sub>`;
       document.querySelector(`#box-${boxNumber}`).setAttribute('style', 'display: inline');
-      handAsString += item;
       boxNumber++;
     } 
   }
@@ -214,12 +211,12 @@ function playGame(WORDS) {
           break;
         case 'replay':
           count === 0 ?
-          DIALOGUE.innerHTML = "You have not played a hand yet.<br>Please play a new hand first!" :
+          DIALOGUE.innerHTML = "You have not played a hand yet. Please, play a new hand first!" :
           playHand(hand, WORDS, HANDSIZE);
           break;
         case 'comp':
           count === 0 ?
-          DIALOGUE.innerHTML = "Please play a new game first!" :
+          DIALOGUE.innerHTML = "Please, play a new game first!" :
           compPlayHand(hand, WORDS, HANDSIZE);
           break;
         case 'end':
@@ -230,6 +227,7 @@ function playGame(WORDS) {
           DIALOGUE.innerHTML = "";
           HOME_PAGE.setAttribute('style', 'display: inline');
           HAND_BOXES.forEach(item => item.innerText = "");
+          count = 0;
           break;
         default:
           DIALOGUE.innerHTML = "Invalid command.";
@@ -255,5 +253,6 @@ STARTBUTTON.addEventListener('click', async (event) => {
   event.preventDefault();
   HOME_PAGE.setAttribute('style', 'display: none');
   GAME_FIELD.setAttribute('style', 'display: flex');
+  document.querySelector("#control-btn-new").classList.add("highlight-btn");
   return playGame(WORDS);
 });
