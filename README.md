@@ -2,7 +2,7 @@
 
 <img align="right" src="https://storage.googleapis.com/ltkcms.appspot.com/fs/wfa/images/cover/scrabble-tiles-full-alphabet.base" width="350">
 
-This is a web-based game app. You can try to play it here (https://dmitryyagodin.github.io/word-game/).
+This is a web-based game app. Try to play it on [Github pages](https://dmitryyagodin.github.io/word-game/).
 The game has a logic of a popular board game called *Scrabble*. In this version of the game, the player is invited to form words from a random set of 8 letters. Each letter has its own score so that the letters that typically appear less frequently in the English-language words get higher scores. The sum of letter scores is then multiplied by the number of letters used to form the word. In case the player uses all 8 letters to form a single word, the overall score gets 50 bonus points.
 
 
@@ -19,7 +19,7 @@ The page also promises an intriguing experience of learning some "weird" words t
 <br>
 
 <p align="center">
-  <img src="https://github.com/dmitryyagodin/word-game/blob/main/images/home_screen.png" width="600" alt="Home screen">
+  <img src="https://github.com/dmitryyagodin/word-game/blob/main/images/2021-01-31_(375x667)_homepage.png" width="300" alt="Home screen">
 <p/>
 
 
